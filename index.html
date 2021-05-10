@@ -102,6 +102,7 @@
     }
 	
 	function showIosInstall() {
+	alert(1);
         let iosPrompt = document.body.append(
 		'<div class="ios-prompt">' + 
 		'	<span style="color: rgb(187, 187, 187); float: right; margin-top: -14px; margin-right: -11px;">&times;</span>' +
@@ -124,6 +125,7 @@
 
       // Checks if should display install popup notification:
       if (isIos() && !isInStandaloneMode()) {
+	  alert(2);
         // this.setState({ showInstallMessage: true });
         showIosInstall();
       }
