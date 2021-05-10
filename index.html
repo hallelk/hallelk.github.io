@@ -33,6 +33,11 @@
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
+	   <div class="ios-prompt">
+      <span style="color: rgb(187, 187, 187); float: right; margin-top: -14px; margin-right: -11px;">&times;</span>
+      <img src="assets/imgs/add2home.svg" style="float: left; height: 80px; width: auto; margin-top: -8px; margin-right: 1rem;">
+      <p style="margin-top: -3px; line-height: 1.3rem;">To install this Web App in your iPhone/iPad press <img src="assets/imgs/share.svg" style="display: inline-block; margin-top: 4px; margin-bottom: -4px; height: 20px; width: auto;"> and then Add to Home Screen.</p>
+    </div>
   <script>
 	// Detects if device is on iOS 
 	const isIos = () => {
@@ -109,6 +114,28 @@
       // Service workers not supported. Just drop the <script> tag.
       loadMainDartJs();
     }
+	
+	function showIosInstall() {
+        let iosPrompt = document.querySelector(".ios-prompt");
+        iosPrompt.style.display = "block";
+        iosPrompt.addEventListener("click", () => {
+          iosPrompt.style.display = "none";
+        });
+      }
+    
+      // Detects if device is on iOS
+      const isIos = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return /iphone|ipad|ipod/.test( userAgent );
+      }
+      // Detects if device is in standalone mode
+      const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+      // Checks if should display install popup notification:
+      if (isIos() && !isInStandaloneMode()) {
+        // this.setState({ showInstallMessage: true });
+        showIosInstall();
+      }
   </script>
 </body>
 </html>
